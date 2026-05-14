@@ -1,21 +1,21 @@
 package com.gustavo.bankApi.controller;
 
 import com.gustavo.bankApi.model.Account;
-import com.gustavo.bankApi.repository.AccountRepository;
+import com.gustavo.bankApi.service.AccountService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/accounts")
 public class AccountController {
 
-    private final AccountRepository repository;
+    private final AccountService service;
 
-    public AccountController(AccountRepository repository) {
-        this.repository = repository;
+    public AccountController(AccountService service) {
+        this.service = service;
     }
 
     @PostMapping
     public Account createAccount(@RequestBody Account account) {
-        return repository.save(account);
+        return service.createAccount(account);
     }
 }
